@@ -4,11 +4,11 @@ import time
 from watchdog.observers import Observer
 
 def moverArquivo(path,pastaDestino):
-	"""caminho='/home/dagnei/Documentos/projetos/auto-mv/pasta-teste1'
-	mover=caminho+'/'+arquivo
-	"""
+
 	
 	arquivo=path[33:len(path)]
+	# 33 é a posição na string onde começa o nome do arquivo
+	
 	print(arquivo)
 	arquivoNovo=pastaDestino+'/'+arquivo
 	os.rename(path,arquivoNovo)
@@ -23,19 +23,19 @@ def formato_arquivo(arquivo):
 	return extensao
 
 
-def escolhe_pasta(formato):
+def escolhe_pasta(formato): #Formatos de arquivos que uso com mais frequencia.
 	if formato=='.txt':
-		pasta="/home/dagnei/Documentos/Arquivos-Baixados/Arquivos-Texto"
+		pasta="Path - arquivos texto"
 	elif formato in ['.doc','.docx','.pdf','.ppt','.pps']:
-		pasta ="/home/dagnei/Documentos/Arquivos-Baixados/Documentos"
+		pasta ="Path - documentos"
 	elif formato in ['.png','.jpeg','.gif']:
-		pasta="/home/dagnei/Documentos/Arquivos-Baixados/Imagens"
+		pasta="Path - Imagens"
 	elif formato in ['.xls','.xlsx','.csv']:
-		pasta="/home/dagnei/Documentos/Arquivos-Baixados/Panilhas-Databases"
+		pasta="Path - Panilhas-Databases"
 	elif formato == '.zip':
-		pasta="/home/dagnei/Documentos/Arquivos-Baixados/Arquivos-Zip"
+		pasta="Path - Arquivos-Zip"
 	else:
-		pasta ="/home/dagnei/Documentos/Arquivos-Baixados/Outros"
+		pasta ="Path - Outros"
 
 	return pasta
 
@@ -55,8 +55,8 @@ def on_created(event):
 	moverArquivo(event.src_path,pastadestino)
 
 
-#moverArquivo('teste.txt','/home/dagnei/Documentos/projetos/auto-mv/pasta-teste2')
-pasta="/home/dagnei/Documentos/organizar"
+
+pasta="Path - pasta a ser monitorada"
 eventos= MyEventHandler
 eventos.on_created=on_created
 observer=Observer()
